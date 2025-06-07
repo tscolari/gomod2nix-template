@@ -18,7 +18,6 @@
 let
   goEnv = mkGoEnv {
     pwd = ./.;
-    go = pkgs.go_1_24; # Temporary fix (https://github.com/nix-community/gomod2nix/pull/198)
   };
 
   pre-commit-check = pre-commit-hooks.lib.${pkgs.system}.run {
@@ -71,9 +70,10 @@ pkgs.mkShell {
     goEnv
     gomod2nix
 
-    pkgs.gopls
-    pkgs.golangci-lint
-    pkgs.gotools
+    pkgs.buf
     pkgs.delve
+    pkgs.golangci-lint
+    pkgs.gopls
+    pkgs.gotools
   ];
 }
